@@ -1,6 +1,8 @@
 FROM gfjardim/transmission
 MAINTAINER jdonavan <donavan.stanley@gmail.com>
 
+VOLUME /config
+
 ADD sources.list /etc/apt/
 RUN apt-get update -qq && \
     apt-get install -qq --force-yes python git python-transmissionrpc && \
@@ -8,10 +10,10 @@ RUN apt-get update -qq && \
     apt-get autoclean
 
 RUN git clone https://github.com/Flexget/Flexget.git /opt/flexget
-ADD https://pypi.python.org/packages/source/p/pip/pip-1.4.1.tar.gz /opt/flexget/pip-1.4.1.tar.gz
-ADD https://pypi.python.org/packages/source/s/setuptools/setuptools-1.1.7.tar.gz /opt/flexget/setuptools-1.1.7.tar.gz
+RUN apt-get update
+RUN apt-get install -y python-pip
 
-VOLUME /config
+
 RUN ln -sf /config /root/.flexget
 
 WORKDIR /opt/flexget
