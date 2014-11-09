@@ -1,6 +1,6 @@
 FROM gfjardim/transmission
 MAINTAINER jdonavan <donavan.stanley@gmail.com>
 
-RUN apt-get install python-pip
+RUN apt-get install -y python-pip
 RUN pip install flexget
 RUN pip install flexget[webui]
