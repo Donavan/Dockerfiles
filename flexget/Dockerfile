@@ -16,6 +16,9 @@ RUN apt-get install -y python-pip
 # Upgrade six since the version python-six installs is too old
 RUN pip install six --upgrade
 
+# Add transmissionrpc so flexget can talk to tranmission
+RUN pip install Transmissionrpc
+
 # Map the flexget config to our volume.
 RUN ln -sf /config/.flexget /root/.flexget
 
